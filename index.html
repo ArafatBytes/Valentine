@@ -1,87 +1,194 @@
-<html>
-    <body>
-        <div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <h1>Will you be my valentine, pretty lady?</h1>
-            <img id="valentineImage" src="Valentine 1/Picture/Valentine.jpeg" alt="Valentine's Day Image" style="max-width: 300px; height: auto;">
-            <br/>
-            <br/>
-            <br/>
-            <button id="yesButton">Yes</button>
-            <button id="no">No</button>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be my valentine? </title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
 
-        <style>
-            body {
-                background: linear-gradient(to bottom, #f5cac3, #f7ede2);
-            }
-            div {
-                text-align: center;
-                vertical-align: middle;
-            }
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5cac3;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        h1 {
+            color: #ff477e;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 60%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .yes-button {
+            background-color: rgba(6, 214, 160, 0.3);
+            margin: 20px auto; 
+            display: block;
+        }
+        .no-button {
+            background-color: rgba(239, 71, 111, 0.3);
+            margin: 20px auto; 
+            display: block; 
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 90%;
+            width: 500px;
+        }
+        .call-button {
+            background-color: #ff477e;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Responsive styling */
+        @media screen and (max-width: 768px) {
             h1 {
-                color: #ff477e;
+                font-size: 1.5rem;
+                margin-bottom: 15px;
             }
-            #yesButton {
-                background-color: #06d6a0;
-                transition: transform 0.3s;
-                margin-right: 10px;
-                width: 120px;
-                font-size: 30px;
-                height: 40px;
-                color: #fff;
-                margin-left: -140px;
+            .button {
+                padding: 8px 15px;
+                font-size: 14px;
             }
-            #no {
-                position: absolute;
-                background-color: #ef476f;
-                transition: transform 0.3s;
-                margin-left: 10px;
-                width: 120px;
-                /* font-size: 30px; */
-                height: 40px;
-                color: #fff;
+            .modal-content {
+                padding: 15px;
             }
-        </style>
-        <script>
-            document.getElementById("yesButton").addEventListener("click", showAlert);
+        }
 
-            function showAlert() {
-                alert("Yayyy!! I knew it. I love you! See you soon bb. Happy Valentines Day <3");
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
             }
-
-            var yesButton = document.getElementById("yesButton");
-            var no = document.getElementById("no");
-            var valentineImage = document.getElementById("valentineImage");
-
-            var noTexts = ["Are you sure?","Think about it bb","Really??","You'll press YES this time I know", "Please give me a chance bb", "Baby please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry","I'll feed you Burgers","You'll get KFC wings promise","Some Khichuri maybe?","We can go to a nice place please"];
-            var imageSources = ["Valentine 1/Picture/Valentine1.jpeg", "Valentine 1/Picture/Valentine2.jpeg", "Valentine 1/Picture/Valentine3.jpeg", "Valentine 1/Picture/Valentine4.jpeg","Valentine 1/Picture/Valentine5.jpeg","Valentine 1/Picture/Valentine6.jpeg","Valentine 1/Picture/Valentine7.jpeg","Valentine 1/Picture/Valentine8.jpeg","Valentine 1/Picture/Valentine9.jpeg","Valentine 1/Picture/Valentine10.jpeg","Valentine 1/Picture/Valentine11.jpeg","Valentine 1/Picture/Valentine12.jpeg"];
-
-            no.addEventListener("click", change);
-
-            function change() {
-                var randomIndex = Math.floor(Math.random() * noTexts.length);
-                var randomText = noTexts[randomIndex];
-                no.innerText = randomText;
-
-                var i = Math.floor(Math.random() * 1000) + 1;
-                var j = Math.floor(Math.random() * 700) + 1;
-                no.style.left = i + "px";
-                no.style.top = j + "px";
-
-                var currentWidth = yesButton.offsetWidth;
-                var currentHeight = yesButton.offsetHeight
-                yesButton.style.width = currentWidth + 30 + "px";
-                yesButton.style.height = currentHeight + 10 + "px";
-
-                var randomImageIndex = Math.floor(Math.random() * imageSources.length);
-                valentineImage.src = imageSources[randomImageIndex];
+            img {
+                width: 100%;
             }
-        </script>
-    </body>
+            .yes-button, .no-button {
+                font-size: 20px;
+                padding: 8px 25px;
+            }
+            .modal-content {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my valentine, pretty girl?</h1>
+    <img id="valentineImage" src="./Valentine 1/Picture/Valentine.jpeg" alt="Valentine">
+    <br>
+    <button class="button yes-button" id="yesButton">Yes</button>
+    <button class="button no-button" id="noButton">No</button>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <p>Yayyy!! I knew it. I love you! See you soon babie. Happy Valentine's Day ❤️</p>
+            <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" width="250" height="200">
+            <br>
+            <button class="call-button" onclick="window.open('https://wa.me/8801818902332')">Press to call me</button>
+        </div>
+    </div>
+
+    <script>
+        const noTexts = [
+            "Are you sure?", "Think about it babie", "Really??", "You'll press YES this time I know",
+            "Please give me a chance babie", "Babie please", "Don't do this to me :(", "You're breaking my heart",
+            "I'm gonna cry", "I'll feed you Pizza", "You'll get Ramen I promise", "Some Boba maybe?",
+            "We can go to nice vacations please", "Make my Lily Rily my valentine", "Will love you a lot I promise",
+            "You'll get lots of kisses", "I'll buy you white flowers", "Will go to boi mela with you"
+        ];
+
+        const imageSources = [
+            "./Valentine 1/Picture/Valentine1.jpg", "./Valentine 1/Picture/Valentine3.jpg", "./Valentine 1/Picture/Valentine4.jpeg", "./Valentine 1/Picture/Valentine5.jpeg",
+            "./Valentine 1/Picture/Valentine6.jpg", "./Valentine 1/Picture/Valentine7.jpg", "./Valentine 1/Picture/Valentine8.jpg", "./Valentine 1/Picture/Valentine9.jpeg",
+            "./Valentine 1/Picture/Valentine10.jpg", "./Valentine 1/Picture/Valentine11.jpg", "./Valentine 1/Picture/Valentine12.jpeg", "./Valentine 1/Picture/Valentine13.jpg",
+            "./Valentine 1/Picture/Valentine14.jpg", "./Valentine 1/Picture/Valentine15.jpg", "./Valentine 1/Picture/Valentine16.jpg", "./Valentine 1/Picture/Valentine17.jpg", "./Valentine 1/Picture/Valentine18.jpg"
+        ];
+
+        let yesButton = document.getElementById("yesButton");
+        let noButton = document.getElementById("noButton");
+        let valentineImage = document.getElementById("valentineImage");
+        let modal = document.getElementById("modal");
+        let noButtonClicked = false;
+
+        yesButton.addEventListener("click", () => {
+            modal.style.display = "flex";
+            document.getElementById("bgMusic").pause();
+            document.getElementById("modalMusic").play();
+        });
+
+        noButton.addEventListener("click", () => {
+        if (!noButtonClicked) {
+            noButton.style.position = "absolute"; // Change position only after first click
+            noButtonClicked = true;
+        }
+
+        let randomText = noTexts[Math.floor(Math.random() * noTexts.length)];
+        noButton.innerText = randomText;
+        yesButton.style.width = Math.min(yesButton.offsetWidth + 30, window.innerWidth - 40) + "px";
+        yesButton.style.height = Math.min(yesButton.offsetHeight + 10, window.innerHeight - 40) + "px";
+        valentineImage.src = imageSources[Math.floor(Math.random() * imageSources.length)];
+
+        let maxWidth = window.innerWidth - 200;
+        let maxHeight = window.innerHeight - 40;
+        let newTop = Math.max(20, Math.min(Math.random() * maxHeight, maxHeight));
+        let newLeft = Math.max(20, Math.min(Math.random() * maxWidth, maxWidth));
+        noButton.style.top = newTop + "px";
+        noButton.style.left = newLeft + "px";
+
+        document.addEventListener("click", function() {
+            document.getElementById("bgMusic").play();
+        }, { once: true }); // Runs only on the first click
+
+    });
+    </script>
+    <audio id="bgMusic" autoplay loop>
+        <source src="./Valentine 1/Picture/valentine.mp3" type="audio/mp3">
+    </audio>   
+    <audio id="modalMusic" loop>
+        <source src="./Valentine 1/Picture/kiss.mp3" type="audio/mp3">
+    </audio>     
+</body>
 </html>
